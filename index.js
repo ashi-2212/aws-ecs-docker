@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Welcome to Ram Tilak Yadav Node Application which is deployed on ECS through EC2 using AWS Codepipeline!!!!!!");
+  res.send("Welcome to Ashi Node Application which is deployed on ECS through EC2 using AWS Codepipeline!!!!!!");
 });
 
 app.get("/info", (req, res) => {
