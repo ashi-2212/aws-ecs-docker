@@ -7,18 +7,18 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 381492299588.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 145023093054.dkr.ecr.eu-north-1.amazonaws.com
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t aws-ecs-ecs-repo .
-      - docker tag aws-ecs-ecs-repo:latest 381492299588.dkr.ecr.us-east-1.amazonaws.com/aws-ecs-ecs-repo:latest
+      - docker build -t test-ecr .
+      - docker tag test-ecr:latest 145023093054.dkr.ecr.eu-north-1.amazonaws.com/test-ecr:latest
       - echo Creating imagedefinitions.json...
-      - echo '[{"name":"aws-ecs-ecs-repo","imageUri":"381492299588.dkr.ecr.us-east-1.amazonaws.com/aws-ecs-ecs-repo:latest"}]' > imagedefinitions.json
+      - echo '[{"name":"test-ecr","imageUri":"145023093054.dkr.ecr.eu-north-1.amazonaws.com/test-ecr:latest"}]' > imagedefinitions.json
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
-      - docker push 381492299588.dkr.ecr.us-east-1.amazonaws.com/aws-ecs-ecs-repo:latest
+      - docker push 145023093054.dkr.ecr.eu-north-1.amazonaws.com/test-ecr:latest
       - echo Docker image pushed to ECR successfully!
       # Uncomment and modify the following line if you want to update ECS service here.
       # aws ecs update-service --cluster <your-cluster-name> --service <your-service-name> --force-new-deployment
